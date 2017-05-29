@@ -57,7 +57,7 @@ void KalmanFilter::UpdateEKF(const VectorXd &z) {
 
   VectorXd y = z - z_pred;
 
-  // Normalize the phiandle
+  // Normalization
   while (y[1] > M_PI) y[1] -= 2 * M_PI;
   while (y[1] < -M_PI) y[1] += 2 * M_PI;
 
@@ -71,7 +71,7 @@ void KalmanFilter::UpdateKF(const Eigen::VectorXd &y) {
   MatrixXd PHt = P_ * Ht;
   MatrixXd K = PHt * Si;
 
-  //new estimate
+  //new estimation
   x_ = x_ + (K * y);
   long x_size = x_.size();
   MatrixXd I = MatrixXd::Identity(x_size, x_size);
